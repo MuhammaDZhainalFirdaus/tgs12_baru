@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sistem Antrian M/M/2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #6A0DAD; /* Warna ungu tua */
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        .form-container, .case-study {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            flex: 1;
+            min-width: 300px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #6A0DAD; /* Warna ungu tua */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Menambahkan transisi */
+        }
+        input[type="submit"]:hover {
+            background-color: #4b0082; /* Warna ungu gelap */
+            transform: scale(1.1); /* Efek membesar */
+        }
+        input[type="submit"]:active {
+            transform: scale(1); /* Mengembalikan ukuran normal saat klik */
+        }
+        p {
+            margin: 10px 0;
+        }
+        p.error {
+            color: red;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #6A0DAD; /* Warna ungu tua */
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Simulasi Antrian Loket Kereta</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form method="POST">
+                <label for="lam">Tingkat Kedatangan (λ): </label>
+                <div class="tooltip">
+                    <input type="text" name="lam" required>
+                    <span class="tooltiptext">Masukkan jumlah pelanggan yang datang per unit waktu</span>
+                </div>
+                <br>
+                <label for="mu">Tingkat Layanan (μ): </label>
+                <div class="tooltip">
+                    <input type="text" name="mu" required>
+                    <span class="tooltiptext">Masukkan jumlah pelanggan yang dilayani per unit waktu</span>
+                </div>
+                <br>
+                <input type="submit" value="Hitung" id="hitungButton">
+            </form>
+
+            {% if error_message %}
+                <p class="error">{{ error_message }}</p>
+            {% endif %}
+        </div>
+
+        <div class="case-study">
+            <h2>Studi Kasus: Antrian Loket Loker Kereta</h2>
+            <p>Studi kasus ini membahas sistem antrian di loket loker kereta api. Sistem ini memiliki dua server (loket) untuk melayani penumpang yang datang secara acak. Dengan menggunakan model M/M/2, kita dapat mengevaluasi kinerja sistem seperti rata-rata waktu tunggu, jumlah penumpang dalam antrian, dan probabilitas sistem dalam keadaan kosong.</p>
+            <ul>
+                <li>Model antrian ini dapat diterapkan untuk loket tiket, klinik kesehatan, atau pusat layanan pelanggan.</li>
+                <li>Analisis dapat membantu meningkatkan pengalaman pelanggan dan efisiensi sistem.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Menambahkan efek klik dengan JavaScript
+        const hitungButton = document.getElementById("hitungButton");
+
+        hitungButton.addEventListener("click", function() {
+            // Memberikan animasi klik saat tombol ditekan
+            hitungButton.style.transform = "scale(1)"; // Memastikan ukuran kembali normal setelah klik
+        });
+    </script>
+</body>
+</html>
